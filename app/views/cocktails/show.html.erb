@@ -1,2 +1,8 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<h1><%= @cocktail.name %></h1>
+
+<% if notice.present? %>
+  <%= notice %>
+<% end %>
+<h3>Ingredients:</h3>
+<%= link_to 'Add ingredient dose', new_cocktail_dose_path(@cocktail), class: 'btn btn-sm btn-outline-secondary'%>
+<%= link_to 'Back to Menu', cocktails_path, class: 'btn btn-primary'%>
