@@ -1,5 +1,8 @@
-<h1>Your New Cocktails</h1>
+<h2>New cocktail</h2>
 
-<%= render 'form', cocktail: @cocktail %>
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.input :name, input_html: { autocomplete: 'off' } %>
 
-<%= link_to 'Back', cocktails_path, class: 'btn btn-primary'%>
+  <%= link_to 'Cancel', cocktails_path, class: 'btn btn-outline-secondary' %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

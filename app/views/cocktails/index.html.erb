@@ -1,11 +1,20 @@
-<h1>Mister Cocktail</h1>
-<ul>
-  <% @cocktails.each do |cocktail| %>
-    <li>
-      <%= link_to cocktail.name, cocktail_path(cocktail)%>
-    </li>
-  <% end %>
-</ul>
+<%#= cl_image_tag("yiwxwg4lwgpv4zphek6n.jpg",
+      width: 150, height: 150, crop: :thumb, gravity: :face) %>
 
+<% if @cocktails.any? %>
+  <h3>List of cocktails</h3>
 
-<%= link_to 'Add a New Cocktail', new_cocktail_path, class: 'btn btn-primary'%>
+  <ul>
+    <% @cocktails.each do |cocktail| %>
+      <li>
+        <%= link_to cocktail.name, cocktail_path(cocktail) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>Bummer 😿</h3>
+  <p class="empty-state">
+    You don't have any cocktails yet. Get the party started by
+    <strong><%= link_to 'adding your first one now', new_cocktail_path %></strong>!
+  </p>
+<% end %>

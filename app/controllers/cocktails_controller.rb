@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.order(name: :asc)
   end
 
   def show
@@ -15,7 +15,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktails_params)
 
     if @cocktail.save
-      redirect_to cocktail_path(@cocktail.id), notice: "Your #{@cocktail.name} was sucessfully created"
+      redirect_to cocktail_path(@cocktail), notice: "Cocktail <strong>#{@cocktail.name}</strong> was created successfully."
     else
       render :new
     end

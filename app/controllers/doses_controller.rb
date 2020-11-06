@@ -1,21 +1,29 @@
 class DosesController < ApplicationController
   before_action :set_cocktail, except: %i[destroy]
+
+  # get /cocktails/:cocktail_id/doses/new
   def new
     @dose = Dose.new
   end
 
+  # post /cocktails/:cocktail_id/doses
   def create
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
 
     if @dose.save
-      redirect_to cocktail_path(@cocktail.id), notice: "Your dose was sucessfully created"
+      redirect_to cocktail_path(@cocktail)
     else
       render :new
     end
   end
 
-  def destroy; end
+  def destroy
+    @dose = Dose.find(params[:id])
+    @dose.destroy
+
+    redirect_to cocktail_path(@dose.cocktail), alert: 'Ingredient deleted!'
+  end
 
   private
 
