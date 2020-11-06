@@ -5,6 +5,7 @@ class CocktailsController < ApplicationController
 
   def show
     @cocktail = Cocktail.find(params[:id])
+    @cocktails = Cocktail.all.order(name: :asc)
   end
 
   def new
